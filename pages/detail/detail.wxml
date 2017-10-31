@@ -1,0 +1,16 @@
+<!--pages/search-detail/search-detail.wxml-->
+<view class='container'>
+
+  <view class="map-title">{{mapTitle}}</view>
+
+  <map id="myMap" show-location controls="{{controls}}" markers="{{markers}}" include-points="{{points}}" bindcontroltap="controltap" style="width: 100%; height: 75%;"></map>
+
+  <view class='map-info'>
+    <view class='title'>{{title}}</view>
+    <view class='address'>{{address}}</view>
+    <view class="btn-group">
+      <button type='default' bindtap='gps'>导航</button>
+    </view>
+  </view>
+
+</view>

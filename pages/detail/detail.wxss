@@ -1,0 +1,47 @@
+/* pages/search-detail/search-detail.wxss */
+.container{
+  box-sizing: border-box;padding-top: 70rpx;background: #fff;
+}
+.map-title{
+  height: 70rpx;line-height:70rpx;padding: 0 10rpx;font-size: 30rpx;text-align: center;width: 100%;
+  margin-top: -70rpx;box-sizing: border-box;
+}
+.map-info{
+  height: 25%;overflow: hidden;box-sizing: border-box;padding: 30rpx;
+}
+.title{
+  font-size: 35rpx;padding-bottom: 10rpx;
+}
+.address{
+  font-size: 25rpx;color: #aaa;
+}
+.btn-group{
+  padding-top: 30rpx;text-align: right;
+}
+.btn-group button{
+  font-size: 27rpx;display: inline-block;margin-left: 20rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

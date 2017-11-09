@@ -166,13 +166,17 @@ Page({
     })
   },
 
-
-
   //获取文字信息
   getPy: function (e) {
     this.setData({
+      hidden: false,
       showPy: e.target.id,
-      scrollTopId: e.target.id
+    })
+  },
+  setPy: function (e) {
+    this.setData({
+      hidden: true,
+      scrollTopId: this.data.showPy
     })
   },
 

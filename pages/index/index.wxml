@@ -62,7 +62,8 @@
     <view class='city-py' bindtouchstart="tStart" bindtouchend="tEnd" catchtouchmove="tMove">
       <view wx:for="{{_py}}" 
         wx:key="key" 
-        bindtap="getPy"
+        bindtouchstart="getPy"
+        bindtouchend="setPy"
         id="{{item}}">{{item == 'hot' ? "★" : item}}
       </view>
     </view>

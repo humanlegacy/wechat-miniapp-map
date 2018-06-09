@@ -99,26 +99,3 @@ input{
   display: inline-block;float: right;border: 1rpx solid #eee;line-height: 40rpx;padding: 0 20rpx;
   margin-top: 15rpx;background: #fff;border-radius: 5rpx;
 }
-/* 
-
-.list-history .item-wrap{
-  border-bottom: 1rpx solid #eee;position: relative;
-}
-.list-history .item{
-  width: 75%;border-bottom:none;overflow: hidden;
-}
-
-.hasHistory{
-  width: 100%;padding: 50rpx 0;text-align: center;font-size: 30rpx;color: #aaa;
-}
-.delHistory{
-  text-align: center;font-size: 30rpx;color: #aaa;width: 100%;height: 100rpx;line-height: 100rpx;margin-bottom: -100rpx;
-}
-
-.remove-history{
-  display: inline-block;position: absolute;top: 50%;right: 20rpx;margin-top: -20rpx;
-}
-.remove-history image{
-  width: 40rpx;
-} */
-

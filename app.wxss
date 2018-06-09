@@ -1,3 +1,90 @@
-page,.container{
-  width: 100%;height: 100%;box-sizing: border-box;
+/**app.wxss**/
+page,.container {
+  width: 100%;
+  box-sizing: border-box;
+}
+.container {
+  width: 100%;height: 100%;
+}
+.nodata,.loading{
+  padding:100rpx 0;text-align: center;font-size: 30rpx;color: #aaa;
+}
+/* 地图 */
+#myMap{
+  width: 100%;height:260px;box-sizing: border-box;
+  /* border-bottom: 1rpx solid #ccc; */
+}
+/* 详情 */
+.navType-detail{
+  padding-bottom: 100rpx;
+}
+.navType-detail-title{
+  font-size: 40rpx;font-weight: bold;
+}
+.navType-detail-title image{
+  width: 40rpx;vertical-align: middle;position: relative;top: -3rpx;
+}
+.navType-detail-item{
+  border-bottom: 1rpx solid #e0e0e0;padding:20rpx 20rpx 20rpx 10rpx;font-size: 35rpx;color: #222;
+  position: relative;
+}
+.navType-detail-item:last-child{
+  border: none;
+}
+.navType-detail-item.start,.navType-detail-item.end{
+  font-size: 35rpx;color: #353535;
+}
+.navType-detail-item text{
+  font-size: 25rpx;color: #aaa;display: block;
+}
+.navType-detail-wrap{
+  padding-left: 30rpx;border-left: 2rpx dashed #ccc;margin-left: 20rpx;
+}
+.navType-detail-item::before{
+  content: "";display: block;width: 30rpx;height: 30rpx;border-radius: 50%;box-sizing: border-box;
+  background: #f5f5f5;border: 1rpx solid #ccc;position: absolute;left: -40rpx;top: 50%;margin-top: -15rpx;
+}
+.navType-detail-item.start::before{
+  background: #18A15F;border: 1rpx solid #18A15F;
+}
+.navType-detail-item.end::before{
+  background: #DD4E42;border: 1rpx solid #DD4E42;
+}
+
+/* 历史记录 */
+.history{
+  height: 100%;width: 100%;background: #fff;
+}
+.history-item{
+  border-bottom: 1rpx solid #e5e5e5;overflow: hidden;position: relative;box-sizing: border-box;
+}
+.history-item-wrap{
+  display: block;width: 100%;height: 100%;box-sizing: border-box;font-size: 30rpx;
+  background: #fff;position: relative;z-index: 2;
+  transition: transform .30s linear 0s; 
+}
+.item-nav{
+  padding:35rpx 30rpx 35rpx 60rpx;position: relative;
+}
+.item-nav .icon{
+  width: 35rpx;height: 35rpx;position: absolute;left: 20rpx;top: 40rpx;
+}
+.history-item-del{
+  position: absolute;z-index: 1;right: 0;top: 0;height: 100%;width: 180rpx;text-align: center;
+  background: #FB2531;color: #fff;box-sizing: border-box;padding-top: 50rpx;font-size: 35rpx;
+}
+.history-item-del text{
+  position: absolute;height: 30rpx;display: block;top: 50%;margin-top: -20rpx;width: 100%;
+}
+.from{
+  font-size: 35rpx;color: #333;padding-bottom: 5rpx;
+}
+.to{
+  font-size: 30rpx;color: #aaa;
+}
+.delHistory{
+ color: rgba(255,255,255,0.5);display: inline-block;float:right;margin-top: 35rpx;font-size: 25rpx;padding: 15rpx 30rpx;
+}
+.no-data{
+  text-align: center;font-size: 25rpx;color: #aaa;width: 70%;padding: 100rpx 0;margin: 0 auto;
 }

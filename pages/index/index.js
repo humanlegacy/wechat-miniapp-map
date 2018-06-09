@@ -1,179 +1,149 @@
-var QQMapWXSDK = require('../../libs/qqmap-wx-jssdk.min.js');
-var qqmapsdk;
-var data = getApp().globalData;
+var $ = require('../../libs/conf.js');
+var cityData = require('../../libs/city.js');
 
 Page({
   data: {
-    //poi搜索位置
-    location:{},
     //城市下拉
-    citySelected:'获取位置中',
+    citySelected: '获取位置中',
     cityData: {},
-    hotCityData:[],
-    _py: ["hot","A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z"],
-    _hotCity:["北京市","广州市","成都市","深圳市","杭州市","武汉市"],
+    hotCityData: [],
+    _py: ["hot", "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z"],
+    _hotCity: ["北京市", "上海市", "广州市", "深圳市", "杭州市", "苏州市", "成都市"],
     //搜索列表
-    inputVal:'',
-    searchList:[],
-    cityListShow:false,
-    inputListShow:false,
+    inputVal: '',
+    searchList: [],
+    cityListShow: false,
+    inputListShow: false,
     hidden: true,
-    showPy:''
-  },
+    showPy: '★',
 
-  onLoad: function (options) {
-    qqmapsdk = new QQMapWXSDK({
-      key: 'COVBZ-PGML5-VPWIN-QR3OM-XS26O-24FPI'
-    }); 
+    //搜索历史记录
+    historyListShow: true,
+    historyList: []
   },
-  onShow:function(){
-    wx.showLoading({ title:'获取位置中'});
+  onShow() {
+    var history = wx.getStorageSync("historyList").length > 0 ? wx.getStorageSync("historyList") : [];
+    this.setData({
+      historyList: history
+    });
+  },
+  onLoad() {
     var that = this;
-
+    wx.showNavigationBarLoading();
     //获得当前位置坐标
-    wx.getLocation({
-      success: function (res) {
-      //  console.log(res)
-        //坐标转详细地址
+    $.map.getRegeo({
+      success(data) {
+        var data = data[0], city = data.regeocodeData.addressComponent.province;
         that.setData({
-          location: {
-            latitude: res.latitude,
-            longitude: res.longitude
-          }
+          citySelected: city,
+          city: city,
+          latitude: data.latitude,
+          longitude: data.longitude,
+          sname: "我的位置",
+          saddress: data.name
         });
-        qqmapsdk.reverseGeocoder({
-          location: {
-            latitude: res.latitude,
-            longitude: res.longitude
-          },
-          success: function (res) {
-            //通过定位获得当前位置
-            that.setData({
-              citySelected: res.result.ad_info.city
-            });
-          }
-        });
-      }
-    })
-
-    // 调用接口,获得全国城市列表
-    qqmapsdk.getCityList({
-      success: function (res) {
-        var cityArr = res.result[0].concat(res.result[1]),city = {},hotCity = [];
-        that.data._py.forEach(function(key){
-          cityArr.forEach(function (val) {
+        //查询全国城市列表
+        var cityArr = cityData.result[0].concat(cityData.result[1]), city = {}, hotCity = [];
+        that.data._py.forEach((key)=> {
+          cityArr.forEach((val)=> {
             var py = val.pinyin[0][0].toUpperCase();
-            if(py === key){
+            if (py === key) {
               if (city[py] === undefined) {
                 city[py] = [];
-                city[py].push(val)
-              } else {
-                city[py].push(val)
               }
+              city[py].push(val)
             }
-            if (that.data._hotCity.indexOf(val.fullname)>=0){
-              if (hotCity.length < that.data._hotCity.length){
+            if (that.data._hotCity.indexOf(val.fullname) >= 0) {
+              if (hotCity.length < that.data._hotCity.length) {
                 hotCity.push(val)
               }
             }
           });
         });
         that.setData({
-          cityData: city,
+          cityData: city
+        });
+        that.setData({
           hotCityData: hotCity
         });
-        wx.hideLoading()
+        wx.hideNavigationBarLoading();
       }
     });
-
   },
 
   //搜索关键字
-  keyword: function (keyword){
+  keyword(keyword) {
     var that = this;
-    qqmapsdk.search({
-      keyword: keyword,
-      page_size:20,
-      location: that.data.location,
-      success: function (res) {
-        that.setData({
-          searchList: res.data
-        });
+    $.map.getInputtips({
+      keywords: keyword,
+      location: that.data.longitude + "," + that.data.latitude,
+      success(data) {
+        if (data && data.tips) {
+          data.tips.shift();
+          that.setData({
+            searchList: data.tips
+          });
+          wx.hideNavigationBarLoading();
+        }
       }
     });
   },
 
   //打开城市列表
-  openCityList:function(){
+  openCityList() {
     this.setData({
       cityListShow: true,
-      inputListShow: false
+      inputListShow: false,
+      historyListShow: false
     });
   },
 
   //选择城市
-  selectCity:function(e){
-  //  console.log(e)
+  selectCity(e) {
+    var dataset = e.currentTarget.dataset;
     this.setData({
-      citySelected: e.currentTarget.dataset.fullname,
+      citySelected: dataset.fullname,
       cityListShow: false,
-      inputListShow:false,
+      inputListShow: false,
+      historyListShow: true,
       location: {
-        latitude: e.currentTarget.dataset.lat,
-        longitude: e.currentTarget.dataset.lng
+        latitude: dataset.lat,
+        longitude: dataset.lng
       }
     });
-
-    this.keyword(this.data.inputVal)
+    this.keyword(this.data.citySelected + this.data.inputVal)
   },
-
-
-  //输入
-  input:function(e){
-    if (e.detail.value == ''){
-      this.setData({
-        inputVal: e.detail.value,
-        inputListShow: false,
-        cityListShow: false
-      });
-    }else{
-      this.setData({
-        inputVal: e.detail.value,
-        inputListShow: true,
-        cityListShow: false
-      });
-      this.keyword(e.detail.value)
-    }
-  },
-
-  //清除输入框
-  clear:function(){
+  touchstart(e) {
     this.setData({
-      inputVal: '',
-      inputListShow: false
-    })
+      index: e.currentTarget.dataset.index,
+      Mstart: e.changedTouches[0].pageX
+    });
   },
-
-  //取消返回
-  cancel:function(){
-    wx.navigateBack();
+  touchmove(e) {
+    var history = this.data.historyList;
+    var move = this.data.Mstart - e.changedTouches[0].pageX;
+    history[this.data.index].x = move > 0 ? -move : 0;
+    this.setData({
+      historyList: history
+    });
   },
-
-  //跳转到详情页
-  detail:function(e){
-    wx.navigateTo({
-      url: '../detail/detail?location=' + e.currentTarget.dataset.location + '&title=' + e.currentTarget.dataset.title + '&address=' + e.currentTarget.dataset.address
-    })
+  touchend(e) {
+    var history = this.data.historyList;
+    var move = this.data.Mstart - e.changedTouches[0].pageX;
+    history[this.data.index].x = move > 100 ? -180 : 0;
+    this.setData({
+      historyList: history
+    });
   },
-
   //获取文字信息
-  getPy: function (e) {
+  getPy(e) {
     this.setData({
       hidden: false,
       showPy: e.target.id,
     })
   },
-  setPy: function (e) {
+
+  setPy(e) {
     this.setData({
       hidden: true,
       scrollTopId: this.data.showPy
@@ -181,35 +151,96 @@ Page({
   },
 
   //滑动选择城市
-  tMove: function (e) {
-    var y = e.touches[0].clientY;
-    var offsettop = e.currentTarget.offsetTop;
-    var that = this;
+  tMove(e) {
+    var y = e.touches[0].clientY,
+      offsettop = e.currentTarget.offsetTop,
+      that = this;
 
     //判断选择区域,只有在选择区才会生效
-    if (y > offsettop ) {
+    if (y > offsettop) {
       var num = parseInt((y - offsettop) / 12);
       this.setData({
         showPy: that.data._py[num]
       })
     };
-      
   },
+
   //触发全部开始选择
-  tStart: function () {
+  tStart() {
     this.setData({
       hidden: false
     })
   },
+
   //触发结束选择
-  tEnd: function () {
+  tEnd() {
     this.setData({
       hidden: true,
       scrollTopId: this.data.showPy
     })
+  },
+  //清空历史记录
+  clearHistory() {
+    var that = this;
+    wx.showActionSheet({
+      itemList: ['清空'],
+      itemColor: '#DD4F43',
+      success(res) {
+        if (res.tapIndex == 0) {
+          that.setData({
+            historyList: []
+          });
+          wx.setStorageSync("historyList", []);
+        }
+      }
+    })
+  },
+  //删除某一条
+  del(e) {
+    var that = this;
+    wx.showActionSheet({
+      itemList: ['删除'],
+      itemColor: '#DD4F43',
+      success(res) {
+        if (res.tapIndex == 0) {
+          var index = e.currentTarget.dataset.index,
+            history = that.data.historyList;
+          history.splice(index, 1);
+          that.setData({
+            historyList: history
+          });
+          wx.setStorageSync("historyList", history);
+        }
+      }
+    });
+  },
+  //输入
+  input(e) {
+    if (e.detail.value == '') {
+      this.setData({
+        inputVal: e.detail.value,
+        inputListShow: false,
+        cityListShow: false,
+        historyListShow: true
+      });
+    } else {
+      this.setData({
+        inputVal: e.detail.value,
+        inputListShow: true,
+        cityListShow: false,
+        historyListShow: false
+      });
+      wx.showNavigationBarLoading();
+      this.keyword(this.data.citySelected + e.detail.value)
+    }
+  },
+
+  //清除输入框
+  clear() {
+    this.setData({
+      inputVal: '',
+      inputListShow: false,
+      historyListShow: true
+    })
   }
-
-
-  
-  
 })

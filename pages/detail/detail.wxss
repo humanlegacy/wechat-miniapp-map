@@ -1,47 +1,83 @@
-/* pages/search-detail/search-detail.wxss */
+page{
+  background: #f5f5f5;
+}
 .container{
-  box-sizing: border-box;padding-top: 70rpx;background: #fff;
+  padding: 0;
 }
-.map-title{
-  height: 70rpx;line-height:70rpx;padding: 0 10rpx;font-size: 30rpx;text-align: center;width: 100%;
-  margin-top: -70rpx;box-sizing: border-box;
+/*出行方案*/
+.navType{
+display: flex;
 }
-.map-info{
-  height: 25%;overflow: hidden;box-sizing: border-box;padding: 30rpx;
+.navType-item{
+  flex: 1;opacity: .25;text-align: center;
+  transition: opacity .3s ease 0s;
 }
-.title{
-  font-size: 35rpx;padding-bottom: 10rpx;
+.navType-icon{
+  width: 50rpx;display: block;margin: 0 auto;
 }
-.address{
+.navType-name{
+  font-size: 25rpx;color: #000;padding-top: 10rpx;
+}
+.navType-sel{
+  opacity: 1;
+}
+.navType-title{
+  font-size: 25rpx;color: #000;padding: 25rpx 0;overflow: hidden;
+  padding-left: 5rpx;display: inline-block;vertical-align: middle;
+}
+/* 标题 */
+.current-item{
+  background: #fff;padding: 30rpx;box-sizing: border-box;margin-bottom: 30rpx;position: relative;
+  border-bottom: 1rpx solid #eee;
+}
+.current-item .wrap{
+ padding-bottom: 30rpx;margin-bottom: 30rpx;border-bottom: 1rpx dashed #e5e5e5;
+}
+.current-item .name,.myPosition{
+  font-size: 30rpx;color: #333;
+}
+.current-item .address{
   font-size: 25rpx;color: #aaa;
 }
-.btn-group{
-  padding-top: 30rpx;text-align: right;
+.current-item .name,.current-item .address,.myPosition{
+  width: 100%;white-space: normal;padding-left: 70rpx;padding-right: 30rpx;box-sizing: border-box;
+  position: relative;
 }
-.btn-group button{
-  font-size: 27rpx;display: inline-block;margin-left: 20rpx;
+.current-item .t{
+  display: inline-block;font-size: 25rpx;color: #bbb;width: 70rpx;
+  position: absolute;left: 0;top: 5rpx;
 }
 
 
+.bottom-bar{
+  position: fixed;bottom: 0;left: 0;width: 100%;box-sizing: border-box;
+  padding: 30rpx;border-top:1rpx solid #e5e5e5;background: rgba(255,255,255,0.8);
+}
+.navTap{
+  width: 100%;color: #fff;background: #1d6ed0;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* 路线详情 */
+.navType-detail{
+  padding: 30rpx;background: #fff;
+}
+/* 公交路线 */
+.transfer-list{
+   padding-bottom:30rpx; border-top: 1rpx solid #eee;
+}
+.transfer-item{
+  box-sizing: border-box;padding: 30rpx;
+  font-size: 32rpx;color: #394047;background:#fff;border-bottom: 1rpx solid #eee;
+}
+.transfer-transport{
+  padding-bottom: 15rpx;
+}
+.transfer-transport-name{
+  display: inline-block;word-break: break-all;white-space: normal;
+}
+.route-info{
+  font-size: 25rpx;color: #aaa;
+}
+.tip{
+  font-size: 25rpx;color: #aaa;padding:0 30rpx;text-align: center;
+}

@@ -4,7 +4,9 @@
     "pages/detail/detail"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor":"#fff"
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#333",
+    "backgroundColor": "#333",
+    "navigationBarTextStyle": "white"
   }
 }

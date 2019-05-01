@@ -8,9 +8,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.6.0",
-	"appid": "touristappid",
-	"projectname": "wx-city",
+	"libVersion": "2.6.6",
+	"appid": "wx8d1d22f877ef9e82",
+	"projectname": "wechat-miniapp-map",
 	"condition": {
 		"search": {
 			"current": -1,

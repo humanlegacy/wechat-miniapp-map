@@ -1,69 +1,65 @@
-<!-- 地图 -->
-<map id="myMap" hidden="{{!showMap}}" show-location polyline="{{polyline}}" markers="{{markers}}" bindcontroltap="bindcontroltap" longitude="{{longitude}}" latitude="{{latitude}}"></map>
+<!-- 方案 -->
+<view class="navType">
+    <view class="navType-item {{selected==index?'navType-sel':''}}" data-idx="{{index}}" bindtap="changeNavType" wx:for="{{navType}}" wx:key>
+        <view class='wrap'>
+            <image class="navType-icon" src="{{item.icon}}" mode="widthFix"></image>
+            <image class="navType-icon-g" src="{{item.sel}}" mode="widthFix"></image>
+            <view class="navType-name">{{item.name}}</view>
+        </view>
+    </view>
+</view>
 
-<view class="container">
-  <view class="current-item">
-    <view class="wrap">
-      <view class="myPosition"><view class="t">起点</view>{{sname}}</view>
-      <view class="address" style="padding-bottom:15rpx;">{{saddress}}</view>
-      <view class="name"><view class="t">终点</view>{{name}}</view>
-      <view class="address">{{address}}</view>
-    </view>
-    <!-- 方案 -->
-    <view class="navType">
-      <view class="navType-item {{indexCurrent==index?'navType-sel':''}}" data-idx="{{index}}" bindtap="changeNavType" wx:for="{{navType}}" wx:key>
-        <image class="navType-icon" src="{{item.icon}}" mode="widthFix"></image>
-        <view class="navType-name">{{item.name}}</view>
-      </view>
-    </view>
-  </view>
+<map hidden="{{selected == 1}}" id="myMap" style="height:500rpx;width:100%;" show-location polyline="{{polyline}}" markers="{{markers}}" bindcontroltap="bindcontroltap" longitude="{{longitude}}" latitude="{{latitude}}">
+</map>
 
-  <!-- 其他路线详情 -->
-  <view class="navType-detail" hidden="{{!showDetail}}">
-    <view class="navType-detail-title">
-      <image src="../../images/tip.png" mode="widthFix"></image> 路线详情</view>
-    <view class="navType-title">
-      <text wx:if="{{distance}}">全程约{{distance}}</text>
-      <text wx:if="{{lights}}">，途径{{lights}}个路口/红绿灯</text>
-      <text wx:if="{{duration}}">，预计{{duration}}到达</text>
-      <text wx:if="{{cost}}">，打车约{{cost}}元</text>。
+<view class="common-title">
+    <view class="title">{{opts.name}}</view>
+    <view class="desc">{{opts.address}}</view>
+    <view class="detail" hidden="{{!showDetail}}">
+        <text class="inline">从{{opts.sname}}({{opts.saddress}})出发;</text>
+        <text class="inline" wx:if="{{distance}}">全程约{{distance}}</text>
+        <text class="inline" wx:if="{{lights}}">，途径{{lights}}个路口/红绿灯</text>
+        <text class="inline" wx:if="{{duration}}">，预计{{duration}}到达</text>
+        <text class="inline" wx:if="{{cost}}">，打车约{{cost}}元</text>。
     </view>
+</view>
+
+<view class="navTap" hidden='{{!showBusPaths || transits.length == 0}}'>
+    <view class='navTap-btn' bindtap="transferOpts">更换出行方案</view>
+    <view class='selectType'>当前选择 {{selectType}} 出行方案</view>
+</view>
+<view class='fast-go' hidden='{{!showNav}}' bindtap="showNav">
+    <image src='../../images/icon-map.png' class='fast-go-icon' mode='widthFix'></image>
+</view>
+
+
+<!-- 其他路线详情 -->
+<view class="navType-detail" hidden="{{!showDetail}}">
     <view class="navType-detail-wrap">
-      <view class="navType-detail-item start">从 {{sname}} 出发</view>
-      <view class="navType-detail-item" wx:for="{{info.paths[0].steps}}" wx:key>
-        {{item.road}}
-        <text>{{item.instruction}}</text>
-      </view>
-      <view class="navType-detail-item end">到达 {{name}}</view>
+        <view class="navType-detail-item start-pos">从 {{opts.sname}} 出发</view>
+        <view class="navType-detail-item" wx:for="{{info.paths[0].steps}}" wx:key>
+            {{item.road}}
+            <text>{{item.instruction}}</text>
+        </view>
+        <view class="navType-detail-item end-pos">到达 {{opts.name}}</view>
     </view>
-  </view>
-
+    <view class='end'>- End -</view>
 </view>
 
 <!-- 公交路线 -->
 <view class="transfer-list" hidden='{{!showBusPaths || transits.length == 0}}'>
-  <view bindtap='alert' class="transfer-item" wx:for="{{transits}}" wx:key>
-    <view class="transfer-transport">
-      <block wx:for="{{item.transport}}" wx:for-item="sport" wx:key>{{sport}}</block>
-    </view>
-    <view class="route-info">
-      约{{item.distance}} · {{item.duration}} ·
-      <text wx:if="{{item.walking_distance.length>1}}">步行{{item.walking_distance}}</text>
-      <text wx:if="{{item.cost != null}}"> · {{item.cost}}元</text>
-    </view>
-  </view>
+    <navigator url="../transfer/transfer?index={{index}}&poi={{opts.name}}&sname={{opts.sname}}" class="transfer-item" wx:for="{{transits}}" wx:key>
+        <view class="transfer-transport">
+            <block wx:for="{{item.transport}}" wx:for-item="sport" wx:key>{{sport}}</block>
+        </view>
+        <view class="route-info">约{{item.distance}} · {{item.duration}} ·
+            <text wx:if="{{item.walking_distance.length>1}}">步行{{item.walking_distance}}</text>
+            <text wx:if="{{item.cost != null}}"> · {{item.cost}}元</text>
+        </view>
+    </navigator>
+    <view class='end'>- End -</view>
 </view>
 
 <view hidden="{{showDetail || !showBusPaths || transits.length!=0}}" class="tip">
-  暂无公交路线
-</view>
-
-<view style="height:200rpx;"></view>
-
-<view class="bottom-bar" hidden='{{!showBusPaths || transits.length == 0}}'>
-  <button class="navTap" bindtap="transferOpts">出行方案</button>
-</view>
-
-<view class="bottom-bar" hidden='{{!showNav}}'>
-  <button class="navTap" bindtap="showNav">导航</button>
+    暂无公交路线
 </view>

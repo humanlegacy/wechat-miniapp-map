@@ -1,83 +1,187 @@
-page{
-  background: #f5f5f5;
-}
-.container{
-  padding: 0;
-}
 /*出行方案*/
-.navType{
-display: flex;
+
+.navType {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    background: #000;
 }
-.navType-item{
-  flex: 1;opacity: .25;text-align: center;
-  transition: opacity .3s ease 0s;
+
+.navType-item {
+    flex: 1;
+    opacity: 0.5;
+    text-align: center;
+    transition: opacity 0.3s ease 0s;
 }
-.navType-icon{
-  width: 50rpx;display: block;margin: 0 auto;
+
+.navType-icon, .navType-icon-g {
+    width: 50rpx;
+    height: 50rpx;
+    display: block;
+    margin: 0 auto;
 }
-.navType-name{
-  font-size: 25rpx;color: #000;padding-top: 10rpx;
+
+.navType-icon-g {
+    display: none;
 }
-.navType-sel{
-  opacity: 1;
+
+.navType-name {
+    font-size: 22rpx;
+    color: #fff;
+    padding-top: 10rpx;
 }
-.navType-title{
-  font-size: 25rpx;color: #000;padding: 25rpx 0;overflow: hidden;
-  padding-left: 5rpx;display: inline-block;vertical-align: middle;
+
+.navType-item .wrap {
+    border-bottom: 10rpx solid rgba(0, 0, 0, 0);
+    padding: 15rpx 10rpx 10rpx 10rpx;
 }
+
+.navType-item .wrap .navType-title {
+    font-size: 25rpx;
+    color: #000;
+    padding: 25rpx 0;
+    padding-left: 5rpx;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/*选中的出行方式*/
+
+.navType-sel {
+    opacity: 1;
+}
+
+.navType-sel .wrap {
+    display: inline-block;
+    border-bottom: 10rpx solid #268f26;
+}
+
+.navType-sel .wrap .navType-icon-g {
+    display: block;
+}
+
+.navType-sel .wrap .navType-icon {
+    display: none;
+}
+
+.navType-sel .wrap .navType-name {
+    color: #268f26;
+}
+
 /* 标题 */
-.current-item{
-  background: #fff;padding: 30rpx;box-sizing: border-box;margin-bottom: 30rpx;position: relative;
-  border-bottom: 1rpx solid #eee;
+
+.common-title {
+    padding: 50rpx 30rpx 30rpx 30rpx;
 }
-.current-item .wrap{
- padding-bottom: 30rpx;margin-bottom: 30rpx;border-bottom: 1rpx dashed #e5e5e5;
-}
-.current-item .name,.myPosition{
-  font-size: 30rpx;color: #333;
-}
-.current-item .address{
-  font-size: 25rpx;color: #aaa;
-}
-.current-item .name,.current-item .address,.myPosition{
-  width: 100%;white-space: normal;padding-left: 70rpx;padding-right: 30rpx;box-sizing: border-box;
-  position: relative;
-}
-.current-item .t{
-  display: inline-block;font-size: 25rpx;color: #bbb;width: 70rpx;
-  position: absolute;left: 0;top: 5rpx;
+.common-title .detail {
+    font-size: 30rpx;
+    color: #555;
+    padding-top: 20rpx;
+    line-height: 1.7;
 }
 
+/* 更换出行方案 */
 
-.bottom-bar{
-  position: fixed;bottom: 0;left: 0;width: 100%;box-sizing: border-box;
-  padding: 30rpx;border-top:1rpx solid #e5e5e5;background: rgba(255,255,255,0.8);
+.navTap {
+    width: 100%;
+    text-align: center;
+    padding: 30rpx 0;
 }
-.navTap{
-  width: 100%;color: #fff;background: #1d6ed0;
+.navTap-btn{
+    background: #268f26;
+    font-size: 28rpx;
+    padding: 13rpx 35rpx;
+    display: inline-block;
+    color: #fff;
+    border-radius: 30rpx;
+    margin-bottom: 15rpx;
+}
+.navTap .selectType{
+    color: #aaa;
+    font-size: 23rpx;
+    font-weight: normal;
 }
 
 /* 路线详情 */
-.navType-detail{
-  padding: 30rpx;background: #fff;
+
+.navType-detail {
+    padding: 30rpx;
 }
+
 /* 公交路线 */
-.transfer-list{
-   padding-bottom:30rpx; border-top: 1rpx solid #eee;
+
+.transfer-list {
+    padding-bottom: 30rpx;
 }
-.transfer-item{
-  box-sizing: border-box;padding: 30rpx;
-  font-size: 32rpx;color: #394047;background:#fff;border-bottom: 1rpx solid #eee;
+
+.transfer-item {
+    box-sizing: border-box;
+    padding: 30rpx;
+    font-size: 35rpx;
+    color: #222;
+    background: #fff;
+    border-bottom: 1rpx solid #eee;
 }
-.transfer-transport{
-  padding-bottom: 15rpx;
+
+.transfer-transport {
+    padding-bottom: 15rpx;
 }
-.transfer-transport-name{
-  display: inline-block;word-break: break-all;white-space: normal;
+
+.transfer-transport-name {
+    display: inline-block;
+    word-break: break-all;
+    white-space: normal;
 }
-.route-info{
-  font-size: 25rpx;color: #aaa;
+
+.route-info {
+    font-size: 25rpx;
+    color: #aaa;
 }
-.tip{
-  font-size: 25rpx;color: #aaa;padding:0 30rpx;text-align: center;
+
+.tip {
+    font-size: 25rpx;
+    color: #aaa;
+    text-align: center;
+    padding-top: 100rpx;
+}
+/*跳转地图按钮*/
+@keyframes Tada {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
+.fast-go{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50rpx;
+    margin: 0 auto 50rpx auto;
+    box-sizing: border-box;
+    padding: 15rpx;
+    background: #268f26;
+    box-shadow: 0 5rpx 10rpx rgba(46, 145, 46,0.3);
+    animation: Tada 2s ease-in infinite alternate;
+}
+.fast-go-icon{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.common-title {
+    margin-bottom: 30rpx;
+}
+
+.common-title .title {
+    font-size: 35rpx;
+    font-weight: bold;
+    color: #333;
+}
+
+.common-title .desc {
+    font-size: 25rpx;
+    color: #888;
 }

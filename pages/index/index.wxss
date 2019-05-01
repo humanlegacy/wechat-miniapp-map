@@ -1,101 +1,180 @@
-/* pages/search/search.wxss */
-page{
-  height: 100%;
-}
-.container{
-  padding-top:100rpx;box-sizing: border-box;height: 100%;
-}
-.search-bar{
-  background: #333;
-  width: 100%;
-  height: 100rpx;
-  line-height: 100rpx;
-  box-sizing: border-box;
-  margin-top: -100rpx;
-  display: flex;
-  padding: 15rpx 20rpx;
-  position: relative;z-index: 1;overflow: hidden;
-}
-.picker-opts{
-  display: inline-block;text-align: center;padding-right: 30rpx;
-  line-height: 70rpx;font-size: 28rpx;vertical-align:top;box-sizing: border-box;
-}
-.picker{
-  white-space: nowrap;font-size: 24rpx;color: #aaa;
-}
-input{
-  font-size: 30rpx;color: #aaa;width: 100%;height: 70rpx;
-  line-height: 70rpx;box-sizing: border-box;padding-left: 15rpx;
-  background: #555;border-radius: 10rpx;
-}
-.placeholder{
-  font-size: 30rpx;
-}
-.clear{
-  position: absolute;right: 0;top: 50%;z-index: 2;height: 60rpx;width: 60rpx;margin-top: -30rpx;
-  font-size: 25rpx;text-align: center;
-}
-.clear{
-  height: 60rpx;width: 120rpx;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAEfklEQVR4XuWbjXHUMBCF1xUAFZBUQKgAUkGgAkgF7FVAqOCWCkgqIKmApAJCBSQdQAXHvBvZ2D5ZXkkr3XmimZvJTGxL79NK+2O5oSfemieun6oAWK1WZ5vN5oSIjka/Pv8HIup+TdPcr9frm9ITVAQAMx81TQPR74jobaaI26ZprjebzY2IAJBpMwXAzBD7iYggvES7JqKvInJr9XATAE74Z4PZ1uoCgC8WILIAwNSJaF1wxueAwCJWOUsjGQAzf3Tin8+NsvD//zgIlyn9RANgZgjGrAPAITUAgDUAiLpFAXDifxARXNohtnsiOo2BoAawAPHthERBUAFYkPhoCLMAFig+CoIGwLcD3PC0+8+liJyHLg4CcK4OAJbczkVk0kVOAnBBzk8i2refz4UPt/h6KlgKAfgeGeH9JSJ09jJ3xDP3P7pJeRbRz7WIvPdd7wXgYnv4e227Ayz438LLZmvObmNGGPxGO0AXH+wkUVMAID4mjUXw0T28EITBWk6YpFsROR0D2wGQ8GA8c2ejMYZg9fzBRGHgPgAwrbMI08KlWPt4OKKwrhlB8IlHKA4rjd2gUVQZ1CoGANzO/ztSfHt5CQiW4ttxvujnCmMA7DK9RAamllBCPHQhY5RW4BgANrKYndUHysISSonHeO9EpNvgxwA2qVM/ui8HQknx22GKSKe7+4OZsTkg+LFqKRCKi3fiOm/QB3BBRChsWrYYCLXEQx8KqtD73w0yMxKGD5bq3bM0EGqKx7CuRGRb0utbgMUGOMUvBAFrcpCtMXOqn9fOX7cR9gHA/6PMXap5IYw7qyAeXT6IyPHYAqw8QAhgEEIl8QNP0LeAGgDQOSAcjyu3LsODFcaGt0kW27rCfQCYrNAY5Q4qIPsCECxPYeS1IPgA4NVzyWrOlKuDFyiRRYYs4VFEtht+LTcY8vMYR6lUegqC1w2WCoQ0QY4mWFKtbeVF3kCoRCisEd+OuSYEbyhsnQzFiK8NYTcZcjuwVSyQIr4aBG867ABY5AM54mtACBZEcktiFuJLQwiWxOAbU4uiluJLQpguirplkFIWH1B1z7FKaae8Q4rXCpfF3cBRMIx5LdYGMv03Q1biJy0h8QXO/IuRxM2wew9fMKUdWAIzx55bGGx+LVmrl6N4HuJ55BOlTom2Y8YSxV4Ve1BrZ/YHucA4hGTmlL1AGYlWv2xn7QctwC0DUMasxryHr65M0SHOLZxEH5ComZsrRORcknZEpu2xYLk8R5T23i7rm7pBc0oMNTq4uFfaXg/kul845DF3anQWgFsKS4OgEh/0Ah6vsBQIavFRABZiCVHiowH0IOCAQYn3iDnbxxWKynNrftyBag/wjcqVrwFi33EC/DyE1/lgog/DnSkChNhDVTkz3b8Xn9VBfPLXZMkWMAKBDBLpae7xGi0YHMy82PtHUx5PARCoKpWyCMw4zjgd1mdzHhDII5AV4pdrFZhtJGZIuaO+B9KYk8kSmOvIFS9gHf1PZ8ev4XAIuv/5LI62ms10cig8J27p/69iAYcM6R+9BnNfrn9OWQAAAABJRU5ErkJggg==) no-repeat center center;background-size: 40rpx 40rpx;
-}
-.list-detail,.list-city{
-  width: 100%;height: 100%;overflow-y: auto;background: #fff;
-}
-.list-detail .item-nav{
-  border-bottom: 1rpx solid #eee;
-}
-.list-detail .title,.history .title{
-  font-size: 32rpx;color: #000;line-height: 45rpx;
-}
-.list-detail .address,.history .address{
-  font-size: 28rpx;color: #aaa;white-space: normal;
+page {
+    height: 100%;
 }
 
+.container {
+    padding-top: 100rpx;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.search-bar {
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-top: -100rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: rgb(59, 63, 68);
+    padding: 0 20rpx;
+    position: relative;
+}
+
+.search-bar .clear {
+    position: absolute;
+    right: 30rpx;
+    bottom: 25rpx;
+    z-index: 2;
+    height: 50rpx;
+    width: 50rpx;
+    opacity: 0.35;
+}
+
+.search-bar .split {
+    padding: 0 30rpx;
+    color: #555;
+}
+
+.search-bar .picker-opts {
+    box-sizing: border-box;
+    white-space: nowrap;
+    font-size: 25rpx;
+    color: #fff;
+    float: left;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.search-bar input {
+    font-size: 35rpx;
+    color: #f5f5f5;
+    height: 100rpx;
+    line-height: 100rpx;
+    box-sizing: border-box;
+}
+
+.search-bar .placeholder {
+    font-size: 30rpx;
+    color: #aaa;
+}
+
+.list-detail, .list-city {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background: #fff;
+}
+
+.list-detail .item-nav {
+    border-bottom: 1rpx solid #eee;
+}
+
+.list-detail .title, .history .title {
+    font-size: 32rpx;
+    color: #000;
+    line-height: 45rpx;
+}
+
+.list-detail .address, .history .address {
+    font-size: 28rpx;
+    color: #aaa;
+    white-space: normal;
+}
 
 /* 城市列表 */
-.list-city{position: relative;}
-.py{
-  box-sizing: border-box;background: #eee;font-size: 30rpx;color: #aaa;padding:15rpx 25rpx;
+
+.list-city {
+    position: relative;
 }
-.fullname{
-    box-sizing: border-box;font-size: 35rpx;color: #555;padding:25rpx;border-bottom: 1rpx solid #eee;
+
+.py {
+    box-sizing: border-box;
+    background: #eee;
+    font-size: 23rpx;
+    color: #aaa;
+    padding: 10rpx 25rpx;
 }
-.city-py{
-  position: fixed;top: 50%;right: 0;margin-top: -360rpx;
+
+.fullname {
+    box-sizing: border-box;
+    font-size: 30rpx;
+    color: #555;
+    padding: 25rpx;
+    border-bottom: 1rpx solid #eee;
 }
-.city-py view{
-  font-size: 25rpx;width: 60rpx;height: 12px;line-height: 12px;text-align: center;color: #555;
+
+.city-py {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    margin-top: -360rpx;
 }
+
+.city-py view {
+    font-size: 25rpx;
+    width: 60rpx;
+    height: 12px;
+    line-height: 12px;
+    text-align: center;
+    color: #555;
+}
+
 .showPy {
     width: 150rpx;
     height: 150rpx;
     background: #fff;
-    border-radius:15rpx;
+    border-radius: 15rpx;
     line-height: 150rpx;
     text-align: center;
-    font-size:80rpx;
+    font-size: 80rpx;
     margin: auto;
     position: absolute;
-    top: 0;left: 0;bottom: 0;right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     z-index: 3;
     color: #333;
-    box-shadow: 0 0 150rpx rgba(0,0,0,.35);
+    box-shadow: 0 0 150rpx rgba(0, 0, 0, 0.35);
 }
-.hot-city{
-  border: 1rpx solid #eee;display: inline-block;margin: 25rpx 0 0 25rpx;padding: 20rpx 25rpx;
-  font-size: 30rpx;
+
+.hot-city {
+    border: 1rpx solid #eee;
+    display: inline-block;
+    margin: 25rpx 0 0 25rpx;
+    padding: 10rpx 25rpx;
+    font-size: 25rpx;
 }
 
 /* 历史记录 */
-.list-history{
-  box-sizing: border-box;padding-top: 70rpx;height: 100%;
+
+.list-history {
+    box-sizing: border-box;
+    padding-top: 70rpx;
+    height: 100%;
 }
-.search-history{
-  background: #f5f5f5;font-size: 25rpx;padding:0 20rpx;color: #aaa;height: 70rpx;line-height: 70rpx;
-  margin-top: -70rpx;
+
+.search-history {
+    background: #f5f5f5;
+    font-size: 25rpx;
+    padding: 0 20rpx;
+    color: #aaa;
+    height: 70rpx;
+    line-height: 70rpx;
+    margin-top: -70rpx;
 }
-.clear-history{
-  display: inline-block;float: right;border: 1rpx solid #eee;line-height: 40rpx;padding: 0 20rpx;
-  margin-top: 15rpx;background: #fff;border-radius: 5rpx;
+
+.clear-history {
+    display: inline-block;
+    float: right;
+    border: 1rpx solid #eee;
+    line-height: 40rpx;
+    padding: 0 20rpx;
+    margin-top: 15rpx;
+    background: #fff;
+    border-radius: 5rpx;
+}
+
+.history-item-wrap:active, .item-nav:active {
+    background: #eee;
 }

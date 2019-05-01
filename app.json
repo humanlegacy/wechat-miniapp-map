@@ -1,12 +1,18 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/detail/detail"
-  ],
-  "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#333",
-    "backgroundColor": "#333",
-    "navigationBarTextStyle": "white"
-  }
+    "pages": [
+        "pages/index/index",
+        "pages/detail/detail"
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    },
+    "window": {
+        "navigationBarTitleText": "52魔都",
+        "navigationBarBackgroundColor": "#000",
+        "navigationBarTextStyle": "white",
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#000"
+    }
 }

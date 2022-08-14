@@ -15,5 +15,5 @@
 ![weChart-map](https://raw.githubusercontent.com/humanlegacy/weChat-map/master/images/QQ20190501-165849@2x.png)
 ### 6.公交路线列表，公交路线规划
 ![weChart-map](https://raw.githubusercontent.com/humanlegacy/weChat-map/master/images/QQ20190501-165833@2x.png)
->  更多实例请搜索微信小程序：52魔都
+>  更多实例请搜索微信小程序：PocketMap
 
